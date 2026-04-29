@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can you message me pretty please? 🐱</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Comic Sans MS', 'Arial',sans-serif;background:linear-gradient(-45deg,#ff9a9e 0%,#fecfef 25%,#fad0c4 50%,#ffd1ff 75%,#a8edea 100%);background-size:400% 400%;animation:gradientShift 8s ease infinite;min-height:100vh;position:relative;overflow:hidden;}
+        
+        @keyframes gradientShift{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+
+        .kitten-float{position:absolute;font-size:4.5em;animation:float 7s infinite ease-in-out;opacity:.8;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1));}
+        .kitten1{top:5%;left:5%;animation-delay:0s;}
+        .kitten2{top:15%;right:10%;animation-delay:1.5s;font-size:5em;}
+        .kitten3{bottom:25%;left:15%;animation-delay:3s;}
+        .kitten4{top:60%;right:20%;animation-delay:5s;font-size:3.5em;}
+        .kitten5{bottom:10%;left:60%;animation-delay:6s;}
+        @keyframes float{0%,100%{transform:translateY(0)rotate(0deg)scale(1);}25%{transform:translateY(-15px)rotate(5deg)scale(1.05);}50%{transform:translateY(-25px)rotate(-3deg)scale(1.1);}75%{transform:translateY(-10px)rotate(8deg)scale(1.03);}}
+
+        .sparkle{position:fixed;font-size:1.2em;pointer-events:none;z-index:5;animation:sparkleFall 3s linear infinite;}
+        @keyframes sparkleFall{0%{transform:translateY(100vh)rotate(0deg);opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{transform:translateY(-100px)rotate(720deg);opacity:0;}}
+
+        .page{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.97);padding:45px 35px;border-radius:30px;box-shadow:0 25px 50px rgba(0,0,0,.2);text-align:center;max-width:420px;width:92%;z-index:10;border:3px solid rgba(255,107,157,.3);animation:pagePop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
+        #page1{display:block;}
+        @keyframes pagePop{0%{transform:translate(-50%,-50%) scale(0.3) rotate(-5deg);opacity:0;}100%{transform:translate(-50%,-50%) scale(1) rotate(0deg);opacity:1;}}
+
+        .insta-page{background:linear-gradient(45deg,#E4405F,#F77737,#FCAF45);color:#fff;border:3px solid rgba(255,255,255,.3);box-shadow:0 30px 60px rgba(228,64,95,.4);}
+
+        .emoji{font-size:6em;margin-bottom:20px;display:block;}
+        .emoji-main{animation:bigBounce 2.5s infinite, wiggle 3s infinite;}
+        .insta-emoji{font-size:7em;animation:instaPulse 1.8s infinite;}
+        @keyframes bigBounce{0%,20%,50%,80%,100%{transform:translateY(0) scale(1);}10%{transform:translateY(-20px) scale(1.05);}40%{transform:translateY(-12px) scale(1.08);}60%{transform:translateY(-8px) scale(1.03);}}
+        @keyframes wiggle{0%,100%{transform:rotate(-3deg);}25%{transform:rotate(3deg);}75%{transform:rotate(-1deg);}}
+        @keyframes instaPulse{0%,100%{transform:scale(1) rotate(0deg);}50%{transform:scale(1.15) rotate(180deg);}}
+
+        h1{color:#ff6b9d;font-size:2.5em;margin-bottom:18px;font-weight:900;text-shadow:0 2px 10px rgba(255,107,157,.3);animation:textGlow 2s ease-in-out infinite alternate;}
+        .insta-page h1{color:#fff;text-shadow:0 2px 15px rgba(0,0,0,.3);}
+        @keyframes textGlow{0%{text-shadow:0 2px 10px rgba(255,107,157,.3),0 0 20px rgba(255,107,157,.2);}100%{text-shadow:0 4px 20px rgba(255,107,157,.6),0 0 40px rgba(255,107,157,.4);}}
+
+        .subtitle{font-size:1.25em;color:#ff85a2;margin-bottom:30px;font-weight:600;animation:subtitleFloat 3s ease-in-out infinite;}
+        .insta-page .subtitle{color:rgba(255,255,255,.95);}
+        @keyframes subtitleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+
+        .buttons{display:flex;gap:18px;justify-content:center;margin:25px 0;flex-wrap:wrap;}
+        button{padding:18px 30px;font-size:1.2em;font-weight:800;border:none;border-radius:40px;cursor:pointer;transition:all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);box-shadow:0 12px 30px rgba(0,0,0,.25);min-width:120px;position:relative;overflow:hidden;}
+        button::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transition:.6s;}
+        button:hover::before{left:100%;}
+
+        .yes-btn{background:linear-gradient(135deg,#ff6b9d,#ff8fab,#ffb3d1);color:#fff;animation:yesPulse 2s infinite;}
+        @keyframes yesPulse{0%,100%{box-shadow:0 12px 30px rgba(255,107,157,.5);}50%{box-shadow:0 18px 45px rgba(255,107,157,.8);transform:scale(1.05);}}
+
+        .no-btn{background:linear-gradient(135deg,#f39c12,#f1c40f,#ffd700);color:#fff;position:relative;}
+        .no-btn.moving-no{position:fixed!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%);z-index:100;font-size:1.4em!important;min-width:160px!important;width:160px!important;height:70px!important;line-height:60px!important;}
+        .insta-btn{background:linear-gradient(45deg,#E4405F,#F77737,#FCAF45);color:#fff;font-size:1.4em;padding:25px 45px;min-width:200px;box-shadow:0 20px 50px rgba(228,64,95,.5);}
+        .back-btn{background:linear-gradient(135deg,#4ecdc4,#44a08d,#26de81);color:#fff;padding:12px 25px;font-size:1em;margin:8px 0;box-shadow:0 8px 25px rgba(78,205,196,.4);}
+
+        /* ALL NO BUTTONS JUMP ON CLICK */
+        .no-btn:active{animation:noJump 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
+        @keyframes noJump{0%{transform:translateY(0) scale(1) rotate(0deg);}30%{transform:translateY(-30px) scale(1.2) rotate(15deg);}60%{transform:translateY(-15px) scale(0.9) rotate(-10deg);}100%{transform:translateY(0) scale(1) rotate(0deg);}}
+
+        .tiny{animation:growTiny 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;}
+        @keyframes growTiny{0%{transform:scale(0.05) rotate(180deg);opacity:0;}50%{transform:scale(0.3) rotate(-20deg);}100%{transform:scale(1) rotate(0deg);opacity:1;}}
+
+        /* MOVING NO - REACTS TO CLICKS */
+        @keyframes moveScreen1{0%{transform:translate(-50%,-50%) translate(0,0) rotate(0deg);}100%{transform:translate(-50%,-50%) translate(80vw,-60vh) rotate(360deg);}}
+        @keyframes moveScreen2{0%{transform:translate(-50%,-50%) translate(80vw,-60vh) rotate(360deg);}100%{transform:translate(-50%,-50%) translate(-80vw,60vh) rotate(720deg);}}
+        @keyframes moveScreen3{0%{transform:translate(-50%,-50%) translate(-80vw,60vh) rotate(720deg);}100%{transform:translate(-50%,-50%) translate(60vw,80vh) rotate(1080deg);}}
+        @keyframes moveScreen4{0%{transform:translate(-50%,-50%) translate(60vw,80vh) rotate(1080deg);}100%{transform:translate(-50%,-50%) translate(-60vw,-80vh) rotate(1440deg);}}
+        @keyframes moveScreen5{0%{transform:translate(-50%,-50%) translate(-60vw,-80vh) rotate(1440deg);}100%{transform:translate(-50%,-50%) translate(0,0) rotate(1800deg);}}
+
+        .dots{font-size:3.2em;color:#ff6b9d;animation:bounce-dots 1s infinite;margin:15px 0;}
+        @keyframes bounce-dots{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.25) translateY(-10px);}}
+        .no-counter{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,#ff6b9d,#ff8fab);color:#fff;padding:12px 16px;border-radius:25px;font-weight:900;font-size:1.1em;box-shadow:0 8px 25px rgba(255,107,157,.5);animation:pulseGlow 2s infinite;}
+        @keyframes pulseGlow{0%,100%{transform:scale(1);box-shadow:0 8px 25px rgba(255,107,157,.5);}50%{transform:scale(1.15);box-shadow:0 15px 40px rgba(255,107,157,.8);}}
+
+        .message{font-size:1.35em;color:#ff6b9d;margin:15px 0;font-weight:800;animation:heartBeat 1.5s infinite;}
+        @keyframes heartBeat{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+        .no-btn.invisible{display:none!important;}
+        .hearts{position:absolute;font-size:1.6em;animation:heartFloat 3s infinite linear;pointer-events:none;}
+        @keyframes heartFloat{0%{opacity:1;transform:translateY(0) scale(1) rotate(0deg);}100%{opacity:0;transform:translateY(-80px) scale(2) rotate(720deg);}}
+
+        #celebration{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(45deg,#ff6b9d,#ff8fab,#ffb3d1);color:#fff;padding:30px 50px;border-radius:25px;box-shadow:0 25px 60px rgba(255,107,157,.6);z-index:10000;font-size:1.4em;font-weight:900;display:none;text-align:center;animation:celebratePop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);}
+        @keyframes celebratePop{0%{transform:translate(-50%,-50%) scale(0) rotate(180deg);opacity:0;}100%{transform:translate(-50%,-50%) scale(1) rotate(0deg);opacity:1;}}
+    </style>
+</head>
+<body>
+    <div class="kitten-float kitten1">🐱</div>
+    <div class="kitten-float kitten2">😻</div>
+    <div class="kitten-float kitten3">🐾</div>
+    <div class="kitten-float kitten4">😸</div>
+    <div class="kitten-float kitten5">💕</div>
+
+    <div id="page1" class="page">
+        <div class="emoji emoji-main">😻</div>
+        <h1>Can you message me pretty please? 🐱</h1>
+        <p class="subtitle">With sugar on top? 🍭💕</p>
+        <div class="buttons">
+            <button class="yes-btn" onclick="goInsta()">YES 🥰</button>
+            <button class="no-btn tiny" onclick="nextPage(2)">NO 😿</button>
+        </div>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="hearts" style="top:10%;left:10%;animation-delay:0s;">💕</div>
+        <div class="hearts" style="top:20%;right:15%;animation-delay:1s;">💖</div>
+        <div class="no-counter" id="c1">1</div>
+        <div class="emoji">😿</div>
+        <div class="dots">⏳</div>
+        <div class="message">Pretty please wait... 🐾</div>
+        <button class="back-btn" onclick="showPage(1)">Back</button>
+        <div class="buttons">
+            <button class="yes-btn" onclick="goInsta()">YES 😻</button>
+            <button class="no-btn" onclick="nextPage(3)">NO 🙀</button>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <div class="hearts" style="top:10%;left:10%;">💕</div>
+        <div class="hearts" style="top:30%;right:10%;">💖</div>
+        <div class="no-counter" id="c2">2</div>
+        <div class="emoji">🥺</div>
+        <div class="dots">⏳⏳</div>
+        <div class="message">Pretty pretty please 🥺</div>
+        <button class="back-btn" onclick="showPage(2)">Back</button>
+        <div class="buttons">
+            <button class="yes-btn" onclick="goInsta()">YES 💕</button>
+            <button class="no-btn" onclick="nextPage(4)">NO 😾</button>
+        </div>
+    </div>
+
+    <div id="page4" class="page">
+        <div class="hearts" style="top:10%;left:10%;">💕</div>
+        <div class="hearts" style="top:30%;right:10%;">💖</div>
+        <div class="hearts" style="bottom:20%;left:20%;">💗</div>
+        <div class="no-counter" id="c3">3</div>
+        <div class="emoji">😿😿</div>
+        <div class="dots">⏳⏳⏳</div>
+        <h1>WHATEVER YOU LIKE!</h1>
+        <div class="message">Just message me! 💌</div>
+        <div class="buttons">
+            <button class="yes-btn insta-btn" onclick="goInsta()">PREETY PLEASEEE 🐾</button>
+            <button class="no-btn moving-no" id="movingNo" onclick="movingNoClick()">NO WAY 😾</button>
+        </div>
+    </div>
+
+    <div id="page5" class="insta-page page">
+        <div class="insta-emoji">📱😻</div>
+        <h1>Let's Talk! 💬</h1>
+        <p class="subtitle">I promise I won't bore you 🐱</p>
+        <button class="insta-btn" onclick="openInsta()">📱 @someone_for__me</button>
+        <p style="font-size:1.1em;margin-top:20px;">DM me now pretty please! 💕</p>
+    </div>
+
+    <div id="celebration"></div>
+
+    <script>
+        let pressCount=0;
+        const MAX_PRESSES=5;
+        let movePattern = 1; // Track which move pattern to use next
+
+        function showPage(n){
+            document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+            document.getElementById(`page${n}`).style.display='block';
+        }
+
+        function nextPage(n){
+            pressCount++;
+            updateCounters();
+            if(pressCount>=MAX_PRESSES)hideNoButtons();
+            else showPage(n);
+        }
+
+        function movingNoClick(){
+            pressCount++;
+            updateCounters();
+            
+            // JUMP ANIMATION FIRST
+            const noBtn = document.getElementById('movingNo');
+            noBtn.style.animation = 'noJump 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            
+            setTimeout(() => {
+                // THEN NEW RANDOM MOVEMENT PATTERN
+                const patterns = ['moveScreen1', 'moveScreen2', 'moveScreen3', 'moveScreen4', 'moveScreen5'];
+                const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
+                noBtn.style.animation = `${randomPattern} 2.5s infinite linear`;
+                
+                if(pressCount>=MAX_PRESSES){
+                    hideNoButtons();
+                    showCelebration('🐱 NO BUTTON ESCAPED! 😻 INSTA ONLY 💕');
+                }
+            }, 400);
+        }
+
+        function hideNoButtons(){
+            document.querySelectorAll('.no-btn').forEach(b=>b.classList.add('invisible'));
+        }
+
+        function updateCounters(){
+            ['c1','c2','c3'].forEach((id,i)=>{
+                const c=document.getElementById(id);
+                if(c)c.textContent=Math.min(pressCount,i+1);
+            });
+        }
+
+        function goInsta(){
+            showCelebration('😻 YAY! INSTA TIME! 🐱💕🍭');
+            setTimeout(()=>showPage(5),1200);
+        }
+
+        function openInsta(){
+            window.open('https://www.instagram.com/someone_for__me','_blank');
+        }
+
+        function showCelebration(msg){
+            const c=document.getElementById('celebration');
+            c.textContent=msg;
+            c.style.display='block';
+            setTimeout(()=>c.style.display='none',1500);
+        }
+
+        // ENHANCED SPARKLE RAIN
+        setInterval(()=>{
+            for(let i=0;i<3;i++){
+                setTimeout(()=>{
+                    const s=document.createElement('div');
+                    const emojis=['✨','🐾','💕','🌟','💖','🐱'];
+                    s.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+                    s.className='sparkle';
+                    s.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*20-20}vh;font-size:${1+Math.random()*1.5}em;animation-duration:${2.5+Math.random()*2}s;animation-delay:${Math.random()*0.5}s;`;
+                    document.body.appendChild(s);
+                    setTimeout(()=>s.remove(),5000);
+                },i*100);
+            }
+        },1200);
+
+        // START MOVING NO ANIMATION ON PAGE 4 LOAD
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trigger moving-no class when page4 shows
+        });
+    </script>
+</body>
+</html>
